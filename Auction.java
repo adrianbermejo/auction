@@ -118,4 +118,38 @@ public class Auction
         }
     }
 
+    public  ArrayList<Lot> getUnsold(){
+        ArrayList<Lot> getUnsold = new ArrayList<Lot>();
+        
+        for(Lot objetosSub : lots){
+   
+            Bid pujaSinVender = objetosSub.getHighestBid();
+            if (pujaSinVender == null){
+                getUnsold.add(new Lot(objetosSub.getNumber(),objetosSub.getDescription()));
+                System.out.println(objetosSub.toString());
+            }
+            
+        }
+        return getUnsold;
+
+        
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
