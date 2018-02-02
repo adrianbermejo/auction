@@ -80,17 +80,17 @@ public class Auction
      */
     public Lot getLot(int lotNumber)
     {   int cont =-1;
-         Lot selectedLot = null;
+        Lot selectedLot = null;
         for(Lot objetoSub : lots){
             cont ++;
-                if(objetoSub.getNumber() == lotNumber){
-                    selectedLot = lots.get(cont);
+            if(objetoSub.getNumber() == lotNumber){
+                selectedLot = lots.get(cont);
             }
-            
+
         }
-        
+
         return selectedLot;
-       
+
     }
 
     public void close(){
@@ -111,34 +111,54 @@ public class Auction
 
     public  ArrayList<Lot> getUnsold(){
         ArrayList<Lot> getUnsold = new ArrayList<Lot>();
-        
+
         for(Lot objetosSub : lots){
-   
+
             Bid pujaSinVender = objetosSub.getHighestBid();
             if (pujaSinVender == null){
                 getUnsold.add(new Lot(objetosSub.getNumber(),objetosSub.getDescription()));
                 System.out.println(objetosSub.toString());
             }
-            
+
         }
         return getUnsold;
 
-        
+    }
+
+    /**
+     * elimina el lote con en numero dado
+     * param numberel numero de lote que has eliminado
+     * retun el numero del lote que has eliminado o null
+     * o no existe ese numero de lote
+     */ 
+
+    public Lot removeLot(int number){
+        int cont =0; 
+        boolean busqueda = true;
+        Lot devolver = null;
+        while(cont<= lots.size() && busqueda){
+            Lot selectedLot = lots.get(cont);
+            
+            if(selectedLot.getNumber() == number){
+                devolver = lots.get(cont);
+                lots.remove(cont);
+                busqueda = false;
+                
+            }
+            else {
+
+                cont ++;
+            }
+        }
+        if(busqueda){
+
+            return null;
+        }
+        else{
+            return devolver;
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
